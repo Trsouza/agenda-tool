@@ -1,0 +1,27 @@
+.sidenav {
+  background: #002D40;
+  width: 130px;
+  /* margin-top: -14.3px; */
+}
+
+.sidenav a {
+  color: #FFFFFF;
+}
+
+.sidenav i {
+  padding-right: 10px;
+}
+
+.content {
+  padding: 16px;
+}
+
+.mat-list-item {
+  font-size: 0.8rem;
+}
+
+@media (min-width: 768px) {
+  .mat-list-item {
+    font-size: 1rem;
+  }
+}
