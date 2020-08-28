@@ -30,10 +30,6 @@ public class ClienteService {
 		if(bool) {
 			cliente.setDataRegistro(OffsetDateTime.now());
 		}
-		System.out.println("\n\n ----- "+cliente.getId());
-		//cliente.setContato(contato);
-//		cliente.setDataRegistro(OffsetDateTime.now());
-//		cliente.setDataRegistro(OffsetDateTime.now());
 		
 		return clienteRepository.save(cliente);
 	}

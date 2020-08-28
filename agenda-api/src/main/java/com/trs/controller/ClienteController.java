@@ -63,7 +63,6 @@ public class ClienteController {
 			return ResponseEntity.notFound().build();
 		}
 		cliente.setId(clienteId);
-		//for(Cliente cli: )
 		cliente.setDataRegistro(cliente.getDataRegistro());
 		cliente = cadastroCliente.salvarCliente(cliente, false);
 
