@@ -5,3 +5,30 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-
 
 }
 
+.red {
+  color: #e93d3d;
+}
+
+.v-middle {
+  vertical-align: middle;
+}
+
+.msg-success {
+  background-color: #00ce67;
+  color: #ffffff;
+}
+
+.msg-error {
+  background-color: #e93d3d;
+  color: #ffffff;
+}
+
+
+.mat-raised-button .mat-primary {
+  background: #F2953C;
+}
+
+.conf_color {
+  color: #002743;
+  font-size: 1rem;
+}

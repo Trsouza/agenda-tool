@@ -8,30 +8,16 @@
   color: #e9e7e5;
 }
 
-.header span {
-  font-size: 1.8rem;
-  font-weight: 300;
-}
-
 .header .logo {
   margin-top: 5px;
   height: 30px;
   width: 30px;
   margin-right: 10px;
 }
-
-
-/* .header a  img {
-  display: flex;
-  align-items: flex-start;
+.title-group a {
   text-decoration: none;
-  color: #000000;
+  /* Remove o decorado quando passar o mouse em cima */
+  color: #e9e7e5;
+  margin-right: 10px;
+  font-size: 1.1rem;
 }
-
-.header .title-group {
-  padding-left: 35px;
-}
-
-.header .title-group i {
-  padding-right: 5px;
-} */

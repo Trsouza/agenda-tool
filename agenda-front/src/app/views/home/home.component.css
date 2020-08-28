@@ -16,16 +16,11 @@
 }
 
 .margem{
-  margin-top: 6rem;
+  margin-top: 2rem;
   margin-right: 2rem;
 }
 
-
 .banner{
-  /* width: 10px; */
-  /* margin-left: auto;
-  margin-right: auto; */
-  /* margin-bottom: 50px; */
     display: flex;
     justify-content: flex-end;
 

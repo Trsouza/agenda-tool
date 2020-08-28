@@ -1,11 +1,12 @@
 .sidenav {
-  background: #002D40;
+  background: #EDEDED; 
+  border-right: solid 2px #c9c6c6;
   width: 130px;
-  /* margin-top: -14.3px; */
 }
 
 .sidenav a {
-  color: #FFFFFF;
+   color: #441528;
+   /*#002D40; */
 }
 
 .sidenav i {
@@ -14,6 +15,7 @@
 
 .content {
   padding: 16px;
+  background-color: #FFFFFF
 }
 
 .mat-list-item {
