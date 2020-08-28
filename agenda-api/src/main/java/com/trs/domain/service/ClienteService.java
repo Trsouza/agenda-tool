@@ -11,14 +11,14 @@ import com.trs.domain.repository.ClienteRepository;
 import com.trs.domain.repository.ContatoRepository;
 
 @Service
-public class CadastroClienteService {
+public class ClienteService {
 	@Autowired
 	private ClienteRepository clienteRepository;
 	
 	@Autowired
 	private ContatoRepository contatoRepository;
 	
-	public Cliente salvarCliente(Cliente cliente) {
+	public Cliente salvarCliente(Cliente cliente, boolean bool) {
 //		Contato contato = contatoRepository.findById(cliente.getContato().getId())
 //				.orElseThrow(() -> new NegocioException("Contato não encontrado"));
 		
@@ -27,11 +27,12 @@ public class CadastroClienteService {
 		if (clienteExistente != null && !clienteExistente.equals(cliente)) {
 			throw new NegocioException("Já existe um cliente cadastrado com este e-mail.");
 		}
-//		if(boo) {
-//			cliente.setDataRegistro(LocalDateTime.now());
-//		}
+		if(bool) {
+			cliente.setDataRegistro(OffsetDateTime.now());
+		}
+		System.out.println("\n\n ----- "+cliente.getId());
 		//cliente.setContato(contato);
-		cliente.setDataRegistro(OffsetDateTime.now());
+//		cliente.setDataRegistro(OffsetDateTime.now());
 //		cliente.setDataRegistro(OffsetDateTime.now());
 		
 		return clienteRepository.save(cliente);

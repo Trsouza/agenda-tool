@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.trs.domain.model.Cliente;
 import com.trs.domain.repository.ClienteRepository;
-import com.trs.domain.service.CadastroClienteService;
+import com.trs.domain.service.ClienteService;
 
 @RestController @CrossOrigin(origins = "*")
 @RequestMapping("api/clientes")
@@ -31,7 +31,7 @@ public class ClienteController {
 	private ClienteRepository clienteRepository;
 
 	@Autowired
-	private CadastroClienteService cadastroCliente;
+	private ClienteService cadastroCliente;
 
 	@GetMapping
 	public List<Cliente> listar() {
@@ -53,7 +53,7 @@ public class ClienteController {
 	@ResponseStatus(HttpStatus.CREATED)
 	public Cliente adicionar(@Valid @RequestBody Cliente cliente) {
 //		return cadastroCliente.salvar(cliente, true);
-		return cadastroCliente.salvarCliente(cliente);
+		return cadastroCliente.salvarCliente(cliente, true);
 	}
 	
 	@PutMapping("/{clienteId}")
@@ -62,9 +62,10 @@ public class ClienteController {
 		if (!clienteRepository.existsById(clienteId)) {
 			return ResponseEntity.notFound().build();
 		}
-
 		cliente.setId(clienteId);
-		cliente = cadastroCliente.salvarCliente(cliente);
+		//for(Cliente cli: )
+		cliente.setDataRegistro(cliente.getDataRegistro());
+		cliente = cadastroCliente.salvarCliente(cliente, false);
 
 		return ResponseEntity.ok(cliente);
 	}

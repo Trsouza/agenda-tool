@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.trs.domain.model.Contato;
 import com.trs.domain.repository.ClienteRepository;
 import com.trs.domain.repository.ContatoRepository;
-import com.trs.domain.service.CadastroContatoService;
+import com.trs.domain.service.ContatoService;
 
 @RestController
 //@RequestMapping("/contatos")
@@ -29,7 +29,7 @@ public class ContatoController {
 	private ContatoRepository contatoRepository;
 	
 	@Autowired
-	private CadastroContatoService cadastroContatoService;
+	private ContatoService cadastroContatoService;
 
 	@GetMapping("/contatos")
 	public List<Contato> listar() {

@@ -16,7 +16,7 @@ import com.trs.domain.repository.ClienteRepository;
 import com.trs.domain.repository.ContatoRepository;
 
 @Service
-public class CadastroContatoService {
+public class ContatoService {
 
 	
 	@Autowired
