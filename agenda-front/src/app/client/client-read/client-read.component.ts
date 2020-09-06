@@ -12,13 +12,17 @@ export class ClientReadComponent implements OnInit {
 
   clients : Client[]
   displayedColumns = ['id', 'name', 'email', 'phone', 'date', 'action' ]
+
+  
   
   constructor(private clientService: ClientService) { }
 
   ngOnInit(): void {
-    this.clientService.read().subscribe(clients => {
+    this.clientService.read().subscribe( { 
+      next: clients => {
       this.clients = clients
       // console.log(clients)
+    }
     })
   }
 

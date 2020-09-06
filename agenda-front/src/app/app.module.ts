@@ -30,6 +30,12 @@ import { ClientCrudComponent } from './views/client-crud/client-crud.component';
 import { ClientReadComponent } from './client/client-read/client-read.component';
 import { ClientUpdateComponent } from './client/client-update/client-update.component';
 import { ClientDeleteComponent } from './client/client-delete/client-delete.component';
+import { ContactCrudComponent } from './views/contact-crud/contact-crud.component';
+import { ContactReadComponent } from './contact/contact-read/contact-read.component';
+import { ContactListComponent } from './contact/contact-list/contact-list.component';
+import { ContactUpdateComponent } from './contact/contact-update/contact-update.component';
+import { ContactDeleteComponent } from './contact/contact-delete/contact-delete.component';
+import { ContactCreateComponent } from './contact/contact-create/contact-create.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +49,12 @@ import { ClientDeleteComponent } from './client/client-delete/client-delete.comp
     ClientReadComponent,
     ClientUpdateComponent,
     ClientDeleteComponent,
+    ContactCrudComponent,
+    ContactReadComponent,
+    ContactListComponent,
+    ContactUpdateComponent,
+    ContactDeleteComponent,
+    ContactCreateComponent,
 
   ],
   imports: [

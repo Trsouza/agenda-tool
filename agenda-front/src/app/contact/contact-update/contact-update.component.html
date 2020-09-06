@@ -1,0 +1,25 @@
+<mat-card>
+    <mat-card-title class="conf_color">
+        Editar dados do Contato
+    </mat-card-title>
+    <form action="" *ngIf="contact">
+        <!-- Ao colocar essa propriedade faz com que o formulário só seja esxibido quando os dados tiverem sido carregados em contacte -->
+        <mat-form-field>
+            <input matInput placeholder="Nome" [(ngModel)]="contact.nome" name="name">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Telefone" [(ngModel)]="contact.telefone" name="phone">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Email" [(ngModel)]="contact.email" name="email">
+        </mat-form-field>
+    </form>
+
+    <button mat-raised-button (click)="cancel()">
+        Cancelar
+    </button>
+    <button mat-raised-button (click)="updateContact()" color="primary">
+        Salvar
+    </button>
+
+</mat-card>

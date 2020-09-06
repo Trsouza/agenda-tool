@@ -2,7 +2,7 @@
     <mat-card-title class="conf_color">
        Editar dados do Cliente
     </mat-card-title>
-    <form action="">
+    <form action="" *ngIf="client"> <!-- Ao colocar essa propriedade faz com que o formulário só seja esxibido quando os dados tiverem sido carregados em cliente -->
         <mat-form-field>
             <input matInput placeholder="Nome" [(ngModel)]="client.nome" name="name">
         </mat-form-field>

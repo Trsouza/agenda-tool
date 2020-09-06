@@ -16,8 +16,9 @@ export class ClientUpdateComponent implements OnInit {
 
   ngOnInit(): void {
     const id = + this.route.snapshot.paramMap.get('id')
-    this.clientService.readById(id).subscribe(client => {
-    this.client = client
+    this.clientService.readById(id).subscribe({ 
+    next: client =>  this.client = client,
+    error:err => console.log('Error '+err)
     })
   }
 

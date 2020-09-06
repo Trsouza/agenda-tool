@@ -1,28 +1,33 @@
 package com.trs.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.trs.domain.model.Cliente;
 import com.trs.domain.model.Contato;
-import com.trs.domain.repository.ClienteRepository;
 import com.trs.domain.repository.ContatoRepository;
 import com.trs.domain.service.ContatoService;
 
-@RestController
-//@RequestMapping("/contatos")
+
+@RestController @CrossOrigin(origins = "*")
+@RequestMapping("api/contatos")
 public class ContatoController {
 
 	@Autowired
@@ -30,10 +35,21 @@ public class ContatoController {
 	
 	@Autowired
 	private ContatoService cadastroContatoService;
-
-	@GetMapping("/contatos")
+	
+	@GetMapping
 	public List<Contato> listar() {
 		return contatoRepository.findAll();
+	}
+	
+	@GetMapping("/{contatoId}")
+	public ResponseEntity<Contato> buscarId(@PathVariable Long contatoId) {
+		Optional<Contato> contato = contatoRepository.findById(contatoId);
+
+		if (contato.isPresent()) {
+			return ResponseEntity.ok(contato.get());
+		}
+
+		return ResponseEntity.notFound().build();
 	}
 
 	@GetMapping("/clientes/{clienteId}/contatos")
@@ -43,13 +59,12 @@ public class ContatoController {
 
 	
 	@ResponseStatus(HttpStatus.CREATED)
-	@PostMapping("/clientes/{clienteId}/contatos")
+	@PostMapping("/clientes/{clienteId}/contatos/criar")
 	public Contato adicionar(@Valid @RequestBody Contato contato, @PathVariable Long clienteId) {
 		return cadastroContatoService.salvarContato(contato, clienteId);
 	}
 	
-	
-	@PutMapping("contatos/{contatoId}")
+	@PutMapping("/{contatoId}")
 	public ResponseEntity<Contato> atualizar(@Valid @PathVariable Long contatoId, @RequestBody Contato contato) {
 
 		if (!contatoRepository.existsById(contatoId)) {
@@ -62,7 +77,7 @@ public class ContatoController {
 		return ResponseEntity.ok(contato);
 	}
 
-	@DeleteMapping("contatos/{contatoId}")
+	@DeleteMapping("/{contatoId}")
 	public ResponseEntity<Void> remover(@PathVariable Long contatoId) {
 		if (!contatoRepository.existsById(contatoId)) {
 			return ResponseEntity.notFound().build();
