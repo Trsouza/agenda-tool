@@ -27,11 +27,11 @@ public class ContatoService {
 	
 	public Contato salvarContato(Contato contato, Long clienteId) {
 		Cliente cliente= clienteRepository.findById(clienteId)
-				.orElseThrow(() -> new NegocioException("Cliente não encontrado"));
+				.orElseThrow(() -> new NegocioException("Contato não encontrado"));
 		Contato contatoExistente = contatoRepository.findByEmail(contato.getEmail()); // Não permite cadastrar um email repetido
 		
 		if (contatoExistente != null && !contatoExistente.equals(contato)) {
-			throw new NegocioException("Já existe um contato cadastrado com este e-mail.");
+			throw new NegocioException("Já existe um usuário cadastrado com este e-mail.");
 		}
 		contato.setCliente(cliente);
 		return contatoRepository.save(contato);
@@ -42,7 +42,7 @@ public class ContatoService {
 		Contato contatoExistente = contatoRepository.findByEmail(contato.getEmail()); // Não permite cadastrar um email repetido
 		
 		if (contatoExistente != null && !contatoExistente.equals(contato)) {
-			throw new NegocioException("Já existe um contato cadastrado com este e-mail.");
+			throw new NegocioException("Já existe um usuario cadastrado com este e-mail.");
 		}
 		return contatoRepository.save(contato);
 	}
@@ -50,7 +50,7 @@ public class ContatoService {
 	
 	public List<Contato>  buscarContatosCliente(Long clienteId) {
 		Cliente cliente= clienteRepository.findById(clienteId)
-				.orElseThrow(() -> new EntidadeNaoEncontradaException("Cliente não encontrado"));
+				.orElseThrow(() -> new EntidadeNaoEncontradaException("Contato não encontrado"));
 		return cliente.getContatos();
 	}
 	

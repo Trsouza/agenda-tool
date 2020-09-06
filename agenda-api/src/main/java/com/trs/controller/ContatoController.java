@@ -1,6 +1,7 @@
 package com.trs.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -15,9 +16,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.trs.domain.model.Cliente;
 import com.trs.domain.model.Contato;
 import com.trs.domain.repository.ContatoRepository;
 import com.trs.domain.service.ContatoService;
@@ -32,10 +35,21 @@ public class ContatoController {
 	
 	@Autowired
 	private ContatoService cadastroContatoService;
-
+	
 	@GetMapping
 	public List<Contato> listar() {
 		return contatoRepository.findAll();
+	}
+	
+	@GetMapping("/{contatoId}")
+	public ResponseEntity<Contato> buscarId(@PathVariable Long contatoId) {
+		Optional<Contato> contato = contatoRepository.findById(contatoId);
+
+		if (contato.isPresent()) {
+			return ResponseEntity.ok(contato.get());
+		}
+
+		return ResponseEntity.notFound().build();
 	}
 
 	@GetMapping("/clientes/{clienteId}/contatos")
@@ -45,11 +59,10 @@ public class ContatoController {
 
 	
 	@ResponseStatus(HttpStatus.CREATED)
-	@PostMapping("/clientes/{clienteId}/contatos")
+	@PostMapping("/clientes/{clienteId}/contatos/criar")
 	public Contato adicionar(@Valid @RequestBody Contato contato, @PathVariable Long clienteId) {
 		return cadastroContatoService.salvarContato(contato, clienteId);
 	}
-	
 	
 	@PutMapping("/{contatoId}")
 	public ResponseEntity<Contato> atualizar(@Valid @PathVariable Long contatoId, @RequestBody Contato contato) {

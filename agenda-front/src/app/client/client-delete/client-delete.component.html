@@ -2,7 +2,7 @@
     <mat-card-title class="conf_color">
         Confirmar exclusão?
     </mat-card-title>
-    <form action="">
+    <form action="" *ngIf="client">
         <mat-form-field>
             <input matInput placeholder="Nome" [value]="client.nome" name="name" disabled>
         </mat-form-field>

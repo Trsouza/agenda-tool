@@ -1,10 +1,10 @@
-import { Client } from './client.model';
 import { Injectable } from '@angular/core';
 import { map, catchError} from 'rxjs/operators';
 import { Observable, EMPTY } from 'rxjs';
 
 import { MatSnackBar } from '@angular/material/snack-bar'
 import { HttpClient } from '@angular/common/http';
+import { Client } from './client.model';
 
 @Injectable({
   providedIn: 'root'
@@ -21,9 +21,9 @@ export class ClientService {
   }
 
 
-  getClientsList(): Observable<any> {
-    return this.http.get(`${this.baseUrl}`);
-  }
+  // getClientsList(): Observable<any> {
+  //   return this.http.get(`${this.baseUrl}`);
+  // }
 
 
   read(): Observable<Client[]> {
@@ -51,6 +51,7 @@ export class ClientService {
 
   delete(id: number): Observable<Client> {
     const url = `${this.baseUrl}/${id}`
+    console.log("url   " + url)
     return this.http.delete<Client>(url).pipe(
       map(obj => obj),
       catchError(e => this.errorHandler(e))
